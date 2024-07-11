@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_pdf_book"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/margin_medium"
+    android:layout_margin="@dimen/margin_medium">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcPoster"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_small"
+        app:cardCornerRadius="@dimen/margin_card_medium"
+        android:layout_height="180dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPosterImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/pdf_placeholder" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mcPoster">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:fontFamily="@font/ubuntu_regular"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/text_regular"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_centerHorizontal="true"
+            android:text="Hand Book of Diesel Engines"/>
+
+        <LinearLayout
+            android:layout_below="@id/tvTitle"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGradeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:text="First Year"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">E Library</string>
+    <string name="welcome_to_e_library">Welcome to E Library</string>
+    <string name="content_add_image">content_add_image</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="register"><u>Register Here</u></string>
+    <string name="DrawerOpen">drawer open</string>
+    <string name="DrawerClose">drawer close</string>
+    <string name="language">language</string>
+    <string name="lbl_language">Language</string>
+    <string name="page">Page</string>
+    <string name="size">Size</string>
+    <string name="content_user_profile">user profile</string>
+    <string name="username">UserName</string>
+    <string name="lbl_email">Email</string>
+    <string name="lbl_phone">Phone</string>
+    <string name="lbl_phone_no">0976252112</string>
+    <string name="major">Major</string>
+    <string name="civil">Civil</string>
+    <string name="lbl_">_</string>
+    <string name="not_a_member">Not a member?</string>
+    <string name="profile">Profile</string>
+    <string name="about">About</string>
+    <string name="log_out">Log out</string>
+    <string name="lbl_metallurgy_engineering">Metallurgy Engineering</string>
+    <string name="lbl_information_technology">Information Technology</string>
+</resources>

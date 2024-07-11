@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.ProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:background="#051A60"
+        android:layout_height="?attr/actionBarSize">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:title="Profile"
+            app:titleTextColor="@color/colorPrimary"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:id="@+id/flProfileImage"
+        android:layout_width="match_parent"
+        android:layout_below="@id/appBar"
+        android:background="#051A60"
+        android:layout_height="240dp">
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mtcUser"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_medium_2"
+            android:elevation="8dp"
+            app:cardCornerRadius="90dp">
+
+            <ImageView
+                android:id="@+id/ivUserImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/content_user_profile"
+                android:scaleType="center"
+                android:src="@drawable/profile" />
+        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_below="@id/flProfileImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#97977F"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/username"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aye Nyein Thu"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_regular_2x"
+            android:fontFamily="@font/ubuntu_regular"
+            android:layout_centerHorizontal="true"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:background="@color/secondaryTextColor"
+            android:layout_height="0.5dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:textColor="#97977F"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/lbl_email"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@gmail.com"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_regular_2x"
+            android:fontFamily="@font/ubuntu_regular" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:background="@color/secondaryTextColor"
+            android:layout_height="0.5dp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:textColor="#97977F"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/lbl_phone"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPhoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_regular_2x"
+            android:fontFamily="@font/ubuntu_regular" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:background="@color/secondaryTextColor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:textColor="#97977F"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/major"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMajorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_regular_2x"
+            android:fontFamily="@font/ubuntu_regular" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_medium_2"
+            android:background="@color/secondaryTextColor" />
+    </LinearLayout>
+
+
+</RelativeLayout>

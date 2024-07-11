@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.BookDetailsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:background="@color/colorSecondary"
+        android:layout_height="?attr/actionBarSize">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:title="Book Details"
+            app:titleTextColor="@color/colorPrimary"
+            app:titleCentered="true" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mcPoster"
+        android:layout_width="170dp"
+        app:cardCornerRadius="@dimen/margin_card_medium"
+        android:layout_below="@id/appBar"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_centerHorizontal="true"
+        android:layout_height="180dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPosterImage"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/pdf_placeholder" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/mcPoster"
+        android:textColor="@color/colorSecondary"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textSize="@dimen/text_regular_2x"
+        android:text="API Book By Ei Maung"
+        android:layout_marginTop="@dimen/margin_large"/>
+
+    <LinearLayout
+        android:id="@+id/llMetaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:layout_below="@id/tvTitle"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_small"
+            android:letterSpacing="0.02"
+            android:text="@string/lbl_language"
+            android:textColor="@color/colorSecondary"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_small"
+            android:letterSpacing="0.02"
+            android:text="@string/page"
+            android:textColor="@color/colorSecondary"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.02"
+            android:textSize="@dimen/text_small"
+            android:text="@string/size"
+            android:textColor="@color/colorSecondary"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMetadata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_below="@id/llMetaTitle"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLanguage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_small"
+            android:text="English"
+            android:textColor="@color/colorGreen"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPages"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/text_small"
+            android:text="142 pages"
+            android:textColor="@color/colorGreen"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvFileSize"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:layout_weight="0.33"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_small"
+            android:text="9.8MB"
+            android:textColor="@color/colorGreen"/>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llMetadata"
+        android:text="Now in its 85th Anniversary Edition, this industry-standard resource has equipped generations of engineers and chemists with vital information, data, and insights. "
+        android:layout_marginStart="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginTop="@dimen/margin_large"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUploadTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="March 12,2024"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_below="@id/tvDescription"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/ubuntu_regular"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUploadUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Daw Aye Khine"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_below="@id/tvUploadTime"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDownload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUploadUser"
+        android:backgroundTint="@color/colorSecondary"
+        android:layout_marginStart="@dimen/margin_xlarge"
+        android:layout_marginEnd="@dimen/margin_xlarge"
+        android:layout_marginTop="@dimen/margin_medium_2"
+        app:cornerRadius="@dimen/margin_medium_2"
+        android:text="Download"/>
+</RelativeLayout>

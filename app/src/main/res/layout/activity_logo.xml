@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_logo_gradient"
+    tools:context=".ui.activity.LogoActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLogoSplash"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/kyauksetu_logoonly" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivLogoSplash"
+        android:layout_marginTop="@dimen/margin_xlarge"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_5dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_regular" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="Technological University Kyaukse"/>
+</RelativeLayout>
