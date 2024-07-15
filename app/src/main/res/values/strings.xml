@@ -24,4 +24,7 @@
     <string name="log_out">Log out</string>
     <string name="lbl_metallurgy_engineering">Metallurgy Engineering</string>
     <string name="lbl_information_technology">Information Technology</string>
+    <string name="biotechnology">Biotechnology</string>
+    <string name="nuclear_technology">Nuclear Technology</string>
+    <string name="mechatronics_engineering">Mechatronics Engineering</string>
 </resources>

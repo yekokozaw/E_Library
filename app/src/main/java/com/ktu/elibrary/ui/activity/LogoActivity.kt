@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.ktu.elibrary.data.model.PdfModel
@@ -39,7 +40,7 @@ class LogoActivity : AppCompatActivity() {
                         startActivity(MainActivity.newIntent(context = this))
                         finish()
                     }, onFailure = {
-
+                        Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
                     }
                 )
             }

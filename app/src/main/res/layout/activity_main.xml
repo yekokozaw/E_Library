@@ -99,6 +99,7 @@
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:clickable="true"
+                        android:focusable="true"
                         android:foreground="?android:selectableItemBackgroundBorderless"
                         android:layout_marginStart="@dimen/margin_small"
                         android:background="@drawable/background_major"
@@ -135,6 +136,7 @@
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:clickable="true"
+                        android:focusable="true"
                         android:foreground="?android:selectableItemBackgroundBorderless"
                         android:layout_marginEnd="@dimen/margin_small"
                         android:background="@drawable/background_major"
@@ -160,6 +162,7 @@
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:clickable="true"
+                        android:focusable="true"
                         android:foreground="?android:selectableItemBackgroundBorderless"
                         android:layout_marginStart="@dimen/margin_small"
                         android:background="@drawable/background_major"
@@ -196,6 +199,7 @@
                         android:layout_height="150dp"
                         android:clickable="true"
                         android:layout_marginEnd="@dimen/margin_small"
+                        android:focusable="true"
                         android:foreground="?android:selectableItemBackgroundBorderless"
                         android:background="@drawable/background_major"
                         android:layout_weight="0.5">
@@ -220,6 +224,127 @@
                         android:layout_width="0dp"
                         android:layout_height="150dp"
                         android:clickable="true"
+                        android:foreground="?android:selectableItemBackgroundBorderless"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:background="@drawable/background_major"
+                        android:layout_weight="0.5">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/roboto_light"
+                            android:layout_centerInParent="true"
+                            android:text="@string/lbl_metallurgy_engineering"/>
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="2dp"
+                            android:layout_marginEnd="@dimen/margin_medium"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/colorSecondary"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"/>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:id="@+id/rlMechtronics"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:clickable="true"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:foreground="?android:selectableItemBackgroundBorderless"
+                        android:background="@drawable/background_major"
+                        android:layout_weight="0.5">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/roboto_light"
+                            android:layout_centerInParent="true"
+                            android:text="@string/mechatronics_engineering"/>
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="2dp"
+                            android:layout_marginEnd="@dimen/margin_medium"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/colorSecondary"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rlNuclear"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:selectableItemBackgroundBorderless"
+                        android:layout_marginStart="@dimen/margin_small"
+                        android:background="@drawable/background_major"
+                        android:layout_weight="0.5">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/roboto_light"
+                            android:layout_centerInParent="true"
+                            android:text="@string/nuclear_technology"/>
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="2dp"
+                            android:layout_marginEnd="@dimen/margin_medium"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/colorSecondary"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"/>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_medium_2"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:id="@+id/rlBiotech"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:clickable="true"
+                        android:layout_marginEnd="@dimen/margin_small"
+                        android:focusable="true"
+                        android:foreground="?android:selectableItemBackgroundBorderless"
+                        android:background="@drawable/background_major"
+                        android:layout_weight="0.5">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/roboto_light"
+                            android:layout_centerInParent="true"
+                            android:text="@string/biotechnology"/>
+                        <FrameLayout
+                            android:layout_width="40dp"
+                            android:layout_height="2dp"
+                            android:layout_marginEnd="@dimen/margin_medium"
+                            android:layout_marginBottom="@dimen/margin_medium"
+                            android:background="@color/colorSecondary"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"/>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rlNone"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="invisible"
                         android:foreground="?android:selectableItemBackgroundBorderless"
                         android:layout_marginStart="@dimen/margin_small"
                         android:background="@drawable/background_major"

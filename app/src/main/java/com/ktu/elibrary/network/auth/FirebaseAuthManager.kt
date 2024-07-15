@@ -58,9 +58,6 @@ object FirebaseAuthManager : AuthManager {
                 user?.sendEmailVerification()
                     ?.addOnCompleteListener { task ->
                         if (task.isSuccessful){
-                            mFirebaseAuth.currentUser?.updateProfile(
-                                UserProfileChangeRequest.Builder().setDisplayName(userName).build()
-                            )
                             onSuccess(UserVo(
                                 getCurrentUserId(),userName,phoneNumber,email,
                                 password, major,imageUrl,fcmKey,grade,userRole))

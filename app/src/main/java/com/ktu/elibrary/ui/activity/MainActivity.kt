@@ -56,6 +56,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mBinding.rlIt.setOnClickListener {
             startActivity(MajorDetailsActivity.newIntent(this,5,"Information Technology"))
         }
+        mBinding.rlMetal.setOnClickListener {
+            startActivity(MajorDetailsActivity.newIntent(this,6,"Metallurgy Engineering"))
+        }
+        mBinding.rlMechtronics.setOnClickListener {
+            startActivity(MajorDetailsActivity.newIntent(this,7,"Mechatronics Engineering"))
+        }
+        mBinding.rlNuclear.setOnClickListener {
+            startActivity(MajorDetailsActivity.newIntent(this,8,"Nuclear Technology"))
+        }
+        mBinding.rlBiotech.setOnClickListener {
+            startActivity(MajorDetailsActivity.newIntent(this,9,"BioTechnology"))
+        }
     }
 
     private fun drawerOpenClose(){
