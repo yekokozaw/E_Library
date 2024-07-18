@@ -24,7 +24,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcPoster"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         app:cardCornerRadius="@dimen/margin_card_medium"
         android:layout_below="@id/appBar"
         android:layout_marginTop="@dimen/margin_medium"

@@ -27,4 +27,5 @@
     <string name="biotechnology">Biotechnology</string>
     <string name="nuclear_technology">Nuclear Technology</string>
     <string name="mechatronics_engineering">Mechatronics Engineering</string>
+    <string name="library_logo">library logo</string>
 </resources>

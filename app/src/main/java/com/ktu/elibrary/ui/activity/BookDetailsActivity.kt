@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -95,11 +96,18 @@ class BookDetailsActivity : AppCompatActivity() {
         fileUrl = pdf.fileUrl
         mBinding.tvTitle.text = pdf.title
         mBinding.tvPages.text = pdf.pages
+        mBinding.tvUploadTime.text = getTimeAgo(pdf.id.toLong())
         mBinding.tvLanguage.text = pdf.language
         mBinding.tvUploadUser.text = pdf.uploadUser
         Glide.with(this)
             .load(pdf.posterImage)
             .into(mBinding.ivPosterImage)
+    }
+
+    private fun getTimeAgo(timestamp: Long): String {
+        val now = System.currentTimeMillis()
+        val timeAgo = DateUtils.getRelativeTimeSpanString(timestamp, now, DateUtils.MINUTE_IN_MILLIS)
+        return timeAgo.toString()
     }
 
     private fun checkPermissionsAndDownload() {

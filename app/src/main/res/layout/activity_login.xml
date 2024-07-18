@@ -18,7 +18,7 @@
             android:src="@mipmap/kyauksetu_logoonly"
             android:layout_marginTop="@dimen/margin_xlarge"
             android:layout_centerHorizontal="true"
-            android:contentDescription="" />
+            android:contentDescription="@string/library_logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -95,8 +95,11 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:text="log in"
+            android:textColor="@color/white"
             android:clickable="true"
+            android:visibility="visible"
             android:foreground="?android:attr/selectableItemBackgroundBorderless"
             android:background="@drawable/background_login_button"
             android:layout_marginTop="@dimen/margin_xlarge"

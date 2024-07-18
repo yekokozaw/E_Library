@@ -1,27 +1,15 @@
 package com.ktu.elibrary.ui.activity
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.work.Constraints
-import androidx.work.Data
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.model.PdfModel
 import com.ktu.elibrary.data.model.PdfModelImpl
@@ -32,7 +20,6 @@ import com.ktu.elibrary.extensions.SharedPreferencesHelper
 import com.ktu.elibrary.extensions.hide
 import com.ktu.elibrary.extensions.show
 import com.ktu.elibrary.ui.adapter.PdfListAdapter
-import com.ktu.elibrary.ui.workmanager.DownloadWorker
 
 class MajorDetailsActivity : AppCompatActivity() ,pdfViewHolderDelegate{
 
@@ -143,8 +130,8 @@ class MajorDetailsActivity : AppCompatActivity() ,pdfViewHolderDelegate{
         mBinding.rvPdfBook.layoutManager = GridLayoutManager(this,2)
     }
 
-    override fun onTapPdfViewHolder(pdfFile : PdfVo) {
-        startActivity(BookDetailsActivity.newIntent(this,pdfFile))
+    override fun onTapPdfViewHolder(pdf : PdfVo) {
+        startActivity(BookDetailsActivity.newIntent(this,pdf))
     }
 
     private fun bindYearSpinner() {
@@ -171,9 +158,7 @@ class MajorDetailsActivity : AppCompatActivity() ,pdfViewHolderDelegate{
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
-                    if (p0 != null) {
 
-                    }
                 }
             }
     }
