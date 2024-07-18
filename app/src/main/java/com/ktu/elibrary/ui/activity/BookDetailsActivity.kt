@@ -24,6 +24,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.bumptech.glide.Glide
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.vo.PdfVo
 import com.ktu.elibrary.databinding.ActivityBookDetailsBinding
@@ -31,8 +32,10 @@ import com.ktu.elibrary.ui.workmanager.DownloadWorker
 
 class BookDetailsActivity : AppCompatActivity() {
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var mTitle : String = ""
     private var fileUrl : String = ""
+    private var mId : String = ""
     companion object{
         private const val BOOK = "book"
         fun newIntent(context: Context,pdf : PdfVo) : Intent{
@@ -48,6 +51,8 @@ class BookDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityBookDetailsBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+
         setUpToolbar()
         val pdfBook = intent.getParcelableExtra<PdfVo>(BOOK)
         if (pdfBook != null) {
@@ -76,7 +81,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
     private fun setUpListeners(){
         mBinding.btnDownload.setOnClickListener {
-            val dialogBuilder = AlertDialog.Builder(this)
+            val dialogBuilder = AlertDialog.Builder(this,R.style.AlertDialogTheme)
                 .setTitle(mTitle)
                 .setMessage("Are you sure to Download?")
                 .setPositiveButton("OK"){dialog,_ ->
@@ -133,6 +138,8 @@ class BookDetailsActivity : AppCompatActivity() {
     }
 
     private fun startDownload(){
+        mBinding.btnDownload.isEnabled = false
+        mBinding.btnDownload.alpha = 0.2f
         val data = Data.Builder()
             .putString("url",fileUrl)
             .putString("title",mTitle)
@@ -155,19 +162,34 @@ class BookDetailsActivity : AppCompatActivity() {
                 if (workInfo != null) {
                     when (workInfo.state) {
                         WorkInfo.State.SUCCEEDED -> {
-
+                            mBinding.btnDownload.isEnabled = true
+                            mBinding.btnDownload.alpha = 1.0f
+                            logDownloadCompletionEvent(mTitle)
                         }
                         WorkInfo.State.FAILED -> {
-
+                            mBinding.btnDownload.isEnabled = true
+                            mBinding.btnDownload.alpha = 1.0f
+                            Toast.makeText(this, "Download is not successful", Toast.LENGTH_SHORT).show()
                         }
                         WorkInfo.State.RUNNING -> {
                             Toast.makeText(this, "Downloading...", Toast.LENGTH_SHORT).show()
                             val progress = workInfo.progress.getInt("progress", 0)
+
                         }
                         else -> {}
                     }
                 }
             }
+    }
+
+    private fun logDownloadCompletionEvent(fileName: String) {
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID,mId)
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, fileName)
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"user")
+        firebaseAnalytics.logEvent("download_complete", bundle)
+        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(true)
+        FirebaseAnalytics.getInstance(this).logEvent(FirebaseAnalytics.Event.APP_OPEN, null)
     }
 
     override fun onRequestPermissionsResult(

@@ -131,5 +131,18 @@ object FirebaseAuthManager : AuthManager {
         }
     }
 
+    override fun sendPasswordResetEmail(email: String,onSuccess: (String) -> Unit,onFailure: (String) -> Unit) {
+        mFirebaseAuth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("PasswordReset", "Email sent.")
+                    onSuccess("Password reset email sent")
+                } else {
+                    Log.e("PasswordReset", "Error sending email: ${task.exception?.message}")
+                    onFailure("Failed to send password reset email")
+                }
+            }
+    }
+
 }
 

@@ -2,6 +2,7 @@ package com.ktu.elibrary.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
@@ -15,6 +16,8 @@ import com.ktu.elibrary.data.model.PdfModel
 import com.ktu.elibrary.data.model.PdfModelImpl
 import com.ktu.elibrary.databinding.ActivityLoginBinding
 import com.ktu.elibrary.extensions.SharedPreferencesHelper
+import com.ktu.elibrary.extensions.hide
+import com.ktu.elibrary.extensions.show
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,27 +34,44 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setUpListeners(){
+        mBinding.tvForgetPassword.setOnClickListener {
+            val intent = Intent(this,ResetPasswordActivity::class.java)
+            startActivity(intent)
+        }
         mBinding.btnLogin.setOnClickListener {
             val email = mBinding.etEmail.text.toString()
             val password = mBinding.etPassword.text.toString()
-            mAuthModel.login(
-                email,
-                password,
-                onSuccess = {
-                    pdfModel.getSpecificUser(
-                        it,
-                        onSuccess = { user ->
-                            sharedPreferencesHelper.saveUser(user.userName,user.userId,user.email,user.userRole)
-                            navigateToMain()
-                            finish()
-                        }, onFailure = {
+            if (email.isNotEmpty() && password.isNotEmpty()){
+                mBinding.progressBar.show()
+                mBinding.btnLogin.alpha = 0.5f
+                mBinding.btnLogin.isEnabled = false
+                mAuthModel.login(
+                    email,
+                    password,
+                    onSuccess = {
+                        pdfModel.getSpecificUser(
+                            it,
+                            onSuccess = { user ->
+                                sharedPreferencesHelper.saveUser(user.userName,user.userId,user.email,user.userRole)
+                                navigateToMain()
+                                finish()
+                            }, onFailure = {
 
-                        }
-                    )
-                },
-                onFailure = {
-                    Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
-                })
+                            }
+                        )
+                    },
+                    onFailure = {
+                        Toast.makeText(this,it,Toast.LENGTH_SHORT).show()
+                        mBinding.progressBar.hide()
+                        mBinding.btnLogin.alpha = 1.0f
+                        mBinding.btnLogin.isEnabled = true
+                    })
+            }else if (email.isEmpty()){
+                mBinding.etEmail.error = "Please enter email"
+            }
+            else{
+                mBinding.etPassword.error = "Please enter password"
+            }
         }
 
         mBinding.tvRegister.setOnClickListener {

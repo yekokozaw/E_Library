@@ -18,6 +18,8 @@
     <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <!-- Set button text color -->
         <item name="colorPrimary">@color/colorSecondary</item>
+        <item name="titleTextColor">@color/colorSecondary</item>
+        <item name="titleTextStyle">@font/ubuntu_bold</item>
     </style>
 
 </resources>

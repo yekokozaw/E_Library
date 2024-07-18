@@ -26,4 +26,6 @@ interface AuthModel {
     fun getCurrentUser() : String
 
     fun updateAndUploadProfileImage(bitmap: Bitmap, user: UserVo,onSuccess: () -> Unit,onFailure: (String) -> Unit)
+
+    fun sendPasswordResetEmail(email : String,onSuccess: (String) -> Unit,onFailure: (String) -> Unit)
 }

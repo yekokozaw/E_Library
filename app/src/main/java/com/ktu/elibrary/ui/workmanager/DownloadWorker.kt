@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.os.Environment
+import android.widget.Toast
 import androidx.work.Data
 import androidx.work.Worker
 import androidx.work.WorkerParameters
@@ -48,7 +49,7 @@ class DownloadWorker(private val context : Context, workerParams : WorkerParamet
                     cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_TOTAL_SIZE_BYTES))
 
                 if (totalBytes > 0) {
-                    val progress = (bytesDownloaded * 100 / totalBytes).toInt()
+                    val progress = (bytesDownloaded * 100 / totalBytes)
                     setProgressAsync(
                         Data.Builder().putInt("progress", progress).build()
                     )

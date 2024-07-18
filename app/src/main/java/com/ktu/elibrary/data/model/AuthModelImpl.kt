@@ -79,4 +79,12 @@ object AuthModelImpl : AuthModel {
     {
         mAuthManager.updateAndUploadProfileImage(bitmap,user,onSuccess,onFailure)
     }
+
+    override fun sendPasswordResetEmail(
+        email: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mAuthManager.sendPasswordResetEmail(email,onSuccess,onFailure)
+    }
 }

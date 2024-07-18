@@ -28,4 +28,10 @@
     <string name="nuclear_technology">Nuclear Technology</string>
     <string name="mechatronics_engineering">Mechatronics Engineering</string>
     <string name="library_logo">library logo</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="enter_your_email_we_ll_help_you_reset_your_password">Enter your email we\'ll help you reset your password</string>
+    <string name="description">TODO</string>
+    <string name="password">Password</string>
+    <string name="lbl_log_in">Log in</string>
+    <string name="lbl_forget_password">Forget password?</string>
 </resources>

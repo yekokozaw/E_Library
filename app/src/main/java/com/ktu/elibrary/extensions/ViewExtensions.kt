@@ -1,5 +1,7 @@
 package com.ktu.elibrary.extensions
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.view.View
 
 fun View.hide(){
