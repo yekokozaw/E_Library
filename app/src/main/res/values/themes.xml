@@ -22,5 +22,31 @@
         <item name="titleTextStyle">@font/ubuntu_bold</item>
     </style>
 
+    <style name="RoundedAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="shapeAppearanceOverlay">@style/DialogRoundedCorner</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AlertDialogCustomTitle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AlertDialogCustomButtons</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AlertDialogCustomButtons</item>
+    </style>
+
+    <style name="DialogRoundedCorner">
+        <item name="cornerFamily">rounded</item>
+        <item name="background">@color/white</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+
+    <style name="AlertDialogCustomTitle" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="AlertDialogCustomBodyText" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AlertDialogCustomButtons" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorSecondary</item>
+        <item name="android:textSize">@dimen/text_regular_2x</item>
+    </style>
 </resources>
 

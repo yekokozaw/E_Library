@@ -40,7 +40,8 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_margin="@dimen/margin_medium_2"
-                        android:src="@mipmap/kyauksetu_logoonly"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/logo"
                         android:layout_gravity="center_horizontal"/>
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"

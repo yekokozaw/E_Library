@@ -58,7 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:hint="Search books"
+                        android:hint="@string/lbl_search_books"
                         android:inputType="textPersonName"
                         android:textColor="@color/black" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -96,14 +96,15 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_regular_2x"
                     android:layout_marginBottom="@dimen/margin_large"
-                    android:text="Information Technology"/>
+                    android:text="@string/lbl_information_technology"/>
             </FrameLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFilterBook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="filter books by year"
+                android:text="@string/filter_books_by_year"
+                android:textColor="@color/colorAccent"
                 android:layout_marginBottom="@dimen/margin_small"
                 android:layout_marginStart="@dimen/margin_medium_2"
                 android:layout_marginTop="@dimen/margin_medium_2"
@@ -120,15 +121,6 @@
                 android:background="@drawable/background_spinner"
                 android:elevation="6dp"
                 android:entries="@array/year_list"/>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Press book to download"
-                android:textColor="@color/colorAccent"
-                android:fontFamily="@font/ubuntu_regular"
-                android:textFontWeight="300"
-                android:layout_margin="@dimen/margin_medium"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPdfBook"

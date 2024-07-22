@@ -34,4 +34,7 @@
     <string name="password">Password</string>
     <string name="lbl_log_in">Log in</string>
     <string name="lbl_forget_password">Forget password?</string>
+    <string name="filter_books_by_year">filter books by year</string>
+    <string name="lbl_yes">YES</string>
+    <string name="lbl_search_books">Search books</string>
 </resources>

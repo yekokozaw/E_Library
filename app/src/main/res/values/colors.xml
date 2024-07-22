@@ -13,6 +13,7 @@
     <color name="primaryTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#737273</color>
 
+    <color name="colorPrimaryText">#113A5D</color>
     <color name="colorGolden">#FAEC08</color>
     <color name="littleGray">#F4EEEE</color>
     <color name="start_color_spinner">#4084F8</color>

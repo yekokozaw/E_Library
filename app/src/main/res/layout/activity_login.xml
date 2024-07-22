@@ -13,9 +13,10 @@
         android:layout_height="240dp">
         <ImageView
             android:id="@+id/tvLogin"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@mipmap/kyauksetu_logoonly"
+            android:layout_width="130dp"
+            android:layout_height="140dp"
+            android:src="@mipmap/logo"
+            android:scaleType="centerCrop"
             android:layout_marginTop="@dimen/margin_xlarge"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/library_logo" />

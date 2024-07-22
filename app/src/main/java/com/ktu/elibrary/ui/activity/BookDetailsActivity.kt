@@ -11,14 +11,9 @@ import android.text.format.DateUtils
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.work.Constraints
 import androidx.work.Data
 import androidx.work.NetworkType
@@ -26,6 +21,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.bumptech.glide.Glide
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.model.PdfModel
@@ -55,7 +51,7 @@ class BookDetailsActivity : AppCompatActivity() {
             intent.putExtra(BOOK,pdf)
             intent.putExtra(ROLE,role)
             intent.putExtra(MAJOR,major)
-            return intent;
+            return intent
         }
     }
 
@@ -98,7 +94,7 @@ class BookDetailsActivity : AppCompatActivity() {
 
     private fun setUpListeners(){
         mBinding.btnDownload.setOnClickListener {
-            val dialogBuilder = AlertDialog.Builder(this,R.style.AlertDialogTheme)
+            val dialogBuilder = MaterialAlertDialogBuilder(this,R.style.RoundedAlertDialog)
                 .setTitle(mTitle)
                 .setMessage("Are you sure to Download?")
                 .setPositiveButton("OK"){dialog,_ ->
@@ -115,26 +111,7 @@ class BookDetailsActivity : AppCompatActivity() {
         //delete does not have exception although the collection is not exit
         mBinding.fabDelete.setOnClickListener {
             if (bookId.isNotEmpty() && fileUrl.isNotEmpty()){
-                mBinding.progressBar.show()
-                mBinding.btnDownload.isEnabled = false
-                mBinding.btnDownload.alpha = 0.5f
-                val storagePath = extractStoragePathFromUrl(fileUrl)
-                mPdfModel.deleteBook(
-                    major = majorId,
-                    bookId,
-                    storagePath,
-                    onSuccess = {
-                        Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-                        finish()
-                    },
-                    onFailure = {
-                        mBinding.progressBar.hide()
-                        mBinding.btnDownload.isEnabled = true
-                        mBinding.btnDownload.alpha = 1.0f
-                        Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-                    }
-
-                )
+                showDeleteBookDialog(bookId)
             }
         }
 
@@ -221,7 +198,7 @@ class BookDetailsActivity : AppCompatActivity() {
                         }
                         WorkInfo.State.RUNNING -> {
                             Toast.makeText(this, "Downloading...", Toast.LENGTH_SHORT).show()
-                            val progress = workInfo.progress.getInt("progress", 0)
+                            //val progress = workInfo.progress.getInt("progress", 0)
 
                         }
                         else -> {}
@@ -230,16 +207,52 @@ class BookDetailsActivity : AppCompatActivity() {
             }
     }
 
+    private fun showDeleteBookDialog(bookId: String) {
+        val dialog =
+            MaterialAlertDialogBuilder(this,R.style.RoundedAlertDialog)
+                .setTitle("CONFIRM DELETE")
+                .setMessage("Are you sure to delete this book?")
+                .setPositiveButton("Yes"){ delete,_ ->
+                    delete.dismiss()
+                    // Call your delete book method here
+                    mBinding.progressBar.show()
+                    mBinding.btnDownload.isEnabled = false
+                    mBinding.btnDownload.alpha = 0.5f
+                    val storagePath = extractStoragePathFromUrl(fileUrl)
+                    mPdfModel.deleteBook(
+                        major = majorId,
+                        bookId,
+                        storagePath,
+                        onSuccess = {
+                            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                            finish()
+                        },
+                        onFailure = {
+                            mBinding.progressBar.hide()
+                            mBinding.btnDownload.isEnabled = true
+                            mBinding.btnDownload.alpha = 1.0f
+                            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                        }
+
+                    )
+                }
+                .setNegativeButton("No"){ delete,_ ->
+                    delete.dismiss()
+                }
+                .create()
+        dialog.show()
+    }
+
     private fun logDownloadCompletionEvent(fileName: String) {
         val bundle = Bundle()
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID,mId)
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, fileName)
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"user")
         firebaseAnalytics.logEvent("download_complete", bundle)
-
+        Log.d("download",System.currentTimeMillis().toString())
     }
 
-    fun extractStoragePathFromUrl(url: String): String {
+    private fun extractStoragePathFromUrl(url: String): String {
         val uri = Uri.parse(url)
         val path = uri.path?.substringAfter("/o/")?.substringBefore("?alt=media")
         return path?.replace("%2F", "/") ?: ""
