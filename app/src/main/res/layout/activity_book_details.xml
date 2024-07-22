@@ -131,9 +131,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/llMetadata"
         android:text="Now in its 85th Anniversary Edition, this industry-standard resource has equipped generations of engineers and chemists with vital information, data, and insights. "
-        android:layout_marginStart="@dimen/margin_medium_2"
-        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginStart="@dimen/margin_large"
+        android:layout_marginEnd="@dimen/margin_large"
         android:layout_marginTop="@dimen/margin_large"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_small"
+        android:visibility="gone"
+        android:background="@drawable/dialog_background"
+        android:layout_below="@id/tvDescription"
+        android:progressTint="@color/colorSecondary"
+        android:layout_centerHorizontal="true"
+        android:elevation="8dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvUploadTime"
@@ -141,7 +153,7 @@
         android:layout_height="wrap_content"
         android:text="March 12,2024"
         android:layout_marginTop="@dimen/margin_medium_2"
-        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_xlarge"
         android:layout_below="@id/tvDescription"
         android:layout_alignParentEnd="true"
         android:fontFamily="@font/ubuntu_regular"/>
@@ -153,13 +165,13 @@
         android:text="Daw Aye Khine"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/margin_medium"
-        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginEnd="@dimen/margin_xlarge"
         android:layout_below="@id/tvUploadTime"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnDownload"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@id/tvUploadUser"
         android:backgroundTint="@color/colorSecondary"
         android:layout_marginStart="@dimen/margin_xlarge"
@@ -167,4 +179,17 @@
         android:layout_marginTop="@dimen/margin_medium_2"
         app:cornerRadius="@dimen/margin_medium_2"
         android:text="Download"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:contentDescription="todo"
+        android:src="@drawable/delete"
+        android:backgroundTint="@color/colorRed"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/margin_medium_2"
+        android:layout_marginBottom="@dimen/margin_medium_2"/>
 </RelativeLayout>

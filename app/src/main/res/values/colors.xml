@@ -18,5 +18,7 @@
     <color name="start_color_spinner">#4084F8</color>
     <color name="end_color_spinner">#81C9EA</color>
     <color name="colorGreen">#29D630</color>
+    <color name="colorRed">#F60C2F</color>
     <color name="pink">#C50ADF</color>
+    <color name="majorBackgroundColor">#FFFFFF</color>
 </resources>

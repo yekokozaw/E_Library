@@ -4,9 +4,11 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.format.DateUtils
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -26,21 +28,33 @@ import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.ktu.elibrary.R
+import com.ktu.elibrary.data.model.PdfModel
+import com.ktu.elibrary.data.model.PdfModelImpl
 import com.ktu.elibrary.data.vo.PdfVo
 import com.ktu.elibrary.databinding.ActivityBookDetailsBinding
+import com.ktu.elibrary.extensions.hide
+import com.ktu.elibrary.extensions.show
 import com.ktu.elibrary.ui.workmanager.DownloadWorker
 
 class BookDetailsActivity : AppCompatActivity() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private val mPdfModel : PdfModel = PdfModelImpl
+    private var bookId : String = ""
+    private var majorId : Int = 0
     private var mTitle : String = ""
     private var fileUrl : String = ""
+    private var mUserRole : Int = 0
     private var mId : String = ""
     companion object{
         private const val BOOK = "book"
-        fun newIntent(context: Context,pdf : PdfVo) : Intent{
+        private const val ROLE = "role"
+        private const val MAJOR = "major"
+        fun newIntent(context: Context,pdf : PdfVo,role : Int,major : Int) : Intent{
             val intent = Intent(context,BookDetailsActivity::class.java)
             intent.putExtra(BOOK,pdf)
+            intent.putExtra(ROLE,role)
+            intent.putExtra(MAJOR,major)
             return intent;
         }
     }
@@ -54,6 +68,8 @@ class BookDetailsActivity : AppCompatActivity() {
         firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         setUpToolbar()
+        mUserRole = intent.getIntExtra(ROLE,0)
+        majorId = intent.getIntExtra(MAJOR,0)
         val pdfBook = intent.getParcelableExtra<PdfVo>(BOOK)
         if (pdfBook != null) {
             bindData(pdfBook)
@@ -61,6 +77,7 @@ class BookDetailsActivity : AppCompatActivity() {
             Toast.makeText(this, "book is null", Toast.LENGTH_SHORT).show()
         }
         setUpListeners()
+
     }
 
     private fun setUpToolbar() {
@@ -94,9 +111,40 @@ class BookDetailsActivity : AppCompatActivity() {
             val alertDialog = dialogBuilder.create()
             alertDialog.show()
         }
+
+        //delete does not have exception although the collection is not exit
+        mBinding.fabDelete.setOnClickListener {
+            if (bookId.isNotEmpty() && fileUrl.isNotEmpty()){
+                mBinding.progressBar.show()
+                mBinding.btnDownload.isEnabled = false
+                mBinding.btnDownload.alpha = 0.5f
+                val storagePath = extractStoragePathFromUrl(fileUrl)
+                mPdfModel.deleteBook(
+                    major = majorId,
+                    bookId,
+                    storagePath,
+                    onSuccess = {
+                        Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                        finish()
+                    },
+                    onFailure = {
+                        mBinding.progressBar.hide()
+                        mBinding.btnDownload.isEnabled = true
+                        mBinding.btnDownload.alpha = 1.0f
+                        Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+                    }
+
+                )
+            }
+        }
+
+        if (mUserRole == 2){
+            mBinding.fabDelete.show()
+        }
     }
 
     private fun bindData(pdf: PdfVo){
+        bookId = pdf.id
         mTitle = pdf.title
         fileUrl = pdf.fileUrl
         mBinding.tvTitle.text = pdf.title
@@ -188,8 +236,13 @@ class BookDetailsActivity : AppCompatActivity() {
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, fileName)
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"user")
         firebaseAnalytics.logEvent("download_complete", bundle)
-        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(true)
-        FirebaseAnalytics.getInstance(this).logEvent(FirebaseAnalytics.Event.APP_OPEN, null)
+
+    }
+
+    fun extractStoragePathFromUrl(url: String): String {
+        val uri = Uri.parse(url)
+        val path = uri.path?.substringAfter("/o/")?.substringBefore("?alt=media")
+        return path?.replace("%2F", "/") ?: ""
     }
 
     override fun onRequestPermissionsResult(

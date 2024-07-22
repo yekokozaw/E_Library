@@ -6,21 +6,18 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.model.PdfModel
 import com.ktu.elibrary.data.model.PdfModelImpl
 import com.ktu.elibrary.databinding.ActivityCreatePdfBinding
 import com.ktu.elibrary.extensions.PDFUtils
+import com.ktu.elibrary.extensions.SharedPreferencesHelper
 import com.ktu.elibrary.extensions.hide
 import com.ktu.elibrary.extensions.show
 import java.io.File
@@ -29,9 +26,11 @@ import java.io.InputStream
 class CreatePdfActivity : AppCompatActivity() {
 
     private lateinit var mBinding : ActivityCreatePdfBinding
+    private lateinit var sharedPreferencesHelper: SharedPreferencesHelper
     private var isFileSelected = false
     private var mTempFile : File? = null
     private var mBitmap : Bitmap? = null
+    private var userId : String = ""
     private var major : Int = 0
     private var userName : String = ""
     private var selectedGrade = 1
@@ -59,8 +58,10 @@ class CreatePdfActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityCreatePdfBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
+        sharedPreferencesHelper = SharedPreferencesHelper(this)
+        userId = sharedPreferencesHelper.getUser()?.userId.toString()
         setUpToolbar()
-        major = intent.getIntExtra(MAJOR,0)
+        major = intent.getIntExtra(MAJOR, 0)
         userName = intent.getStringExtra(USERNAME).toString()
         bindGradeSpinner()
         setUpListeners()
@@ -93,6 +94,7 @@ class CreatePdfActivity : AppCompatActivity() {
                             language = mBinding.etLanguage.text.toString(),
                             uploadUser = userName,
                             uploadTime = System.currentTimeMillis().toString(),
+                            userId = userId,
                             onSuccess = {
                                 mBinding.llSaveCancel.show()
                                 mBinding.progressBar.hide()

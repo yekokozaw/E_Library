@@ -22,6 +22,14 @@ interface CloudFireStoreApi {
         onFailure: (String) -> Unit
     )
 
+    fun deleteBook(
+        major: Int,
+        bookId : String,
+        pdfFilePath : String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    )
+
     fun updateAndUploadCoverImage(bitmap: Bitmap, onSuccess: (String) -> Unit, onFailure: (String) -> Unit)
 
     fun getSpecificUser(
@@ -42,6 +50,7 @@ interface CloudFireStoreApi {
         coverImage : String,
         uploadUser : String,
         uploadTime : String,
+        userId : String,
         onSuccess: (String) -> Unit,
         onFailure: (String) -> Unit
     )

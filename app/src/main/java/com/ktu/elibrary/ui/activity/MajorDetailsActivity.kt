@@ -131,7 +131,7 @@ class MajorDetailsActivity : AppCompatActivity() ,pdfViewHolderDelegate{
     }
 
     override fun onTapPdfViewHolder(pdf : PdfVo) {
-        startActivity(BookDetailsActivity.newIntent(this,pdf))
+        startActivity(BookDetailsActivity.newIntent(this,pdf,userRole,major))
     }
 
     private fun bindYearSpinner() {

@@ -1,5 +1,6 @@
 package com.ktu.elibrary.network.storage
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.net.Uri
 import com.google.android.gms.tasks.Task
@@ -16,9 +17,10 @@ import java.util.UUID
 
 object CloudFireStoreApiImpl : CloudFireStoreApi {
 
+    @SuppressLint("StaticFieldLeak")
     private var database: FirebaseFirestore = Firebase.firestore
     private val storageRef = FirebaseStorage.getInstance().reference
-    
+
     override fun addUser(userVo: UserVo) {
 
     }
@@ -44,8 +46,9 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                         val language = data["language"] as String
                         val posterImage = data["poster_image"] as String
                         val fileUrl = data["file_url"] as String
-                        val uploadUser = data["upload_user"] as String
+                        val uploadUser = data["upload_user"] as? String ?: "_"
                         val uploadTime = data["upload_time"] as String
+                        val userId = data["user_id"] as? String ?: "null"
                         val grade = data["grade"] as Long
                         val pdf = PdfVo(
                             id,
@@ -57,7 +60,8 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                             posterImage = posterImage,
                             fileUrl = fileUrl,
                             uploadUser = uploadUser,
-                            uploadTime = uploadTime
+                            uploadTime = uploadTime,
+                            userId = userId
                         )
                         pdfList.add(pdf)
                     }
@@ -73,6 +77,29 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
         onFailure: (String) -> Unit
     ) {
 
+    }
+
+    override fun deleteBook(
+        major: Int,
+        bookId: String,
+        pdfFilePath: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        database.collection(major.toString())
+            .document(bookId)
+            .delete()
+            .addOnSuccessListener {
+                storageRef.child(pdfFilePath).delete().addOnSuccessListener {
+                    onSuccess("File successfully deleted")
+                }
+                    .addOnFailureListener {
+                        onFailure("Error deleting: $it")
+                    }
+            }
+            .addOnFailureListener {
+                onFailure("Error deleting: $it")
+            }
     }
 
     private fun changeBitmapToUrlString(bitmap: Bitmap): Task<Uri> {
@@ -161,6 +188,7 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
         coverImage: String,
         uploadUser: String,
         uploadTime: String,
+        userId : String,
         onSuccess: (String) -> Unit,
         onFailure: (String) -> Unit
     ) {
@@ -184,10 +212,11 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                     "poster_image" to coverImage,
                     "file_url" to urlTask.result.toString(),
                     "upload_user" to uploadUser,
-                    "upload_time" to uploadTime
+                    "upload_time" to uploadTime,
+                    "user_id" to userId
                 )
                 database.collection(major.toString())
-                    .document(id.toString())
+                    .document(id)
                     .set(userMap)
                     .addOnSuccessListener {
                         onSuccess("$it")
