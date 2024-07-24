@@ -15,5 +15,6 @@ data class PdfVo(
     val uploadUser : String = "",
     val uploadTime : String = "",
     val userId : String = "",
-    val grade : Int = 0
+    val grade : Int = 0,
+    val description : String = ""
 ) : Parcelable

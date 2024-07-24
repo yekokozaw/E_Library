@@ -124,6 +124,7 @@ class BookDetailsActivity : AppCompatActivity() {
         bookId = pdf.id
         mTitle = pdf.title
         fileUrl = pdf.fileUrl
+        mBinding.tvDescription.text = pdf.description
         mBinding.tvTitle.text = pdf.title
         mBinding.tvPages.text = pdf.pages
         mBinding.tvUploadTime.text = getTimeAgo(pdf.id.toLong())
@@ -249,7 +250,6 @@ class BookDetailsActivity : AppCompatActivity() {
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, fileName)
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE,"user")
         firebaseAnalytics.logEvent("download_complete", bundle)
-        Log.d("download",System.currentTimeMillis().toString())
     }
 
     private fun extractStoragePathFromUrl(url: String): String {

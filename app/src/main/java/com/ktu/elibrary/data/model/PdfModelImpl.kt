@@ -80,6 +80,7 @@ object PdfModelImpl : PdfModel {
         uploadUser: String,
         uploadTime: String,
         userId: String,
+        description : String,
         onSuccess: (String) -> Unit,
         onFailure: (String) -> Unit
     ) {
@@ -96,6 +97,7 @@ object PdfModelImpl : PdfModel {
             uploadUser,
             uploadTime,
             userId,
+            description,
             onSuccess,
             onFailure
         )

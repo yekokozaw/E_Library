@@ -26,7 +26,7 @@ class PdfListAdapter(private val delegate : pdfViewHolderDelegate)
         holder.bindData(mPdfs[position])
     }
 
-    @SuppressLint("NotifyDataSetChange")
+    @SuppressLint("NotifyDataSetChanged")
     fun setNewData(pdfs : List<PdfVo>){
         mPdfs = pdfs
         notifyDataSetChanged()

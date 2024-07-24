@@ -1,5 +1,7 @@
 package com.ktu.elibrary.ui.activity
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -41,6 +43,7 @@ class ProfileActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this, "user id is null", Toast.LENGTH_SHORT).show()
         }
+        setUpListeners()
     }
 
     private fun setUpToolbar() {
@@ -49,6 +52,13 @@ class ProfileActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.left_arrow)
     }
 
+    private fun setUpListeners(){
+        mBinding.ivCopyImage.setOnClickListener {
+            val copyText = mBinding.tvUserId.text.toString()
+            copyToClipboard(copyText)
+            Toast.makeText(this, "Copied", Toast.LENGTH_SHORT).show()
+        }
+    }
     private fun setUpNetworkCall(userId : String){
         pdfModel.getSpecificUser(
             userId,
@@ -74,11 +84,18 @@ class ProfileActivity : AppCompatActivity() {
     private fun bindUserData(user : UserVo){
         mBinding.tvUserName.text = user.userName
         mBinding.tvEmail.text = user.email
+        mBinding.tvUserId.text = user.userId
         mBinding.tvPhoneNumber.text = user.phoneNumber
         mBinding.tvMajorName.text = user.major
         Glide.with(this)
             .load(user.imageUrl)
             .placeholder(R.drawable.profile)
             .into(mBinding.ivUserImage)
+    }
+
+    private fun copyToClipboard(text: String) {
+        val clipboardManager = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clipData = ClipData.newPlainText("text", text)
+        clipboardManager.setPrimaryClip(clipData)
     }
 }

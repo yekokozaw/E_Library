@@ -3,6 +3,7 @@ package com.ktu.elibrary.network.storage
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.ParcelFileDescriptor
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -45,10 +46,11 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                         val fileSize = data["file_size"] as String
                         val language = data["language"] as String
                         val posterImage = data["poster_image"] as String
-                        val fileUrl = data["file_url"] as String
+                        val fileUrl = data["file_url"] as? String ?: "file is null"
                         val uploadUser = data["upload_user"] as? String ?: "_"
                         val uploadTime = data["upload_time"] as String
                         val userId = data["user_id"] as? String ?: "null"
+                        val description = data["description"] as? String ?: ""
                         val grade = data["grade"] as Long
                         val pdf = PdfVo(
                             id,
@@ -61,7 +63,8 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                             fileUrl = fileUrl,
                             uploadUser = uploadUser,
                             uploadTime = uploadTime,
-                            userId = userId
+                            userId = userId,
+                            description = description
                         )
                         pdfList.add(pdf)
                     }
@@ -189,6 +192,7 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
         uploadUser: String,
         uploadTime: String,
         userId : String,
+        description : String,
         onSuccess: (String) -> Unit,
         onFailure: (String) -> Unit
     ) {
@@ -213,7 +217,8 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                     "file_url" to urlTask.result.toString(),
                     "upload_user" to uploadUser,
                     "upload_time" to uploadTime,
-                    "user_id" to userId
+                    "user_id" to userId,
+                    "description" to description
                 )
                 database.collection(major.toString())
                     .document(id)

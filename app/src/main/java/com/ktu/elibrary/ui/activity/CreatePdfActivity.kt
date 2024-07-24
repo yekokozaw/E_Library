@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.model.PdfModel
 import com.ktu.elibrary.data.model.PdfModelImpl
@@ -95,6 +96,7 @@ class CreatePdfActivity : AppCompatActivity() {
                             uploadUser = userName,
                             uploadTime = System.currentTimeMillis().toString(),
                             userId = userId,
+                            description = mBinding.etDescription.text.toString(),
                             onSuccess = {
                                 mBinding.llSaveCancel.show()
                                 mBinding.progressBar.hide()
@@ -115,7 +117,7 @@ class CreatePdfActivity : AppCompatActivity() {
 
                 )
             }else{
-                Toast.makeText(this, "Please your file", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please select your file", Toast.LENGTH_SHORT).show()
             }
         }
     }

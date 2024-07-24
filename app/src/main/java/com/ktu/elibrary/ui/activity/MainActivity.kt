@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.ktu.elibrary.R
@@ -107,7 +108,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun onTapLogout(){
-        val dialogBuilder = AlertDialog.Builder(this,R.style.AlertDialogTheme)
+        val dialogBuilder = MaterialAlertDialogBuilder(this,R.style.RoundedAlertDialog)
             .setTitle("Logout")
             .setMessage("Are you sure to Logout?")
             .setPositiveButton("OK"){dialog,_ ->

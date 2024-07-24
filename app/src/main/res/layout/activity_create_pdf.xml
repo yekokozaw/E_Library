@@ -81,7 +81,7 @@
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_too_small"
             app:hintTextColor="@color/colorAccent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.33"
             android:hint="book pages"
             app:expandedHintEnabled="false">
 
@@ -98,9 +98,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
-            android:layout_marginEnd="@dimen/margin_too_small"
+            android:layout_marginEnd="@dimen/margin_small"
             app:hintTextColor="@color/colorAccent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.33"
             android:hint="file size"
             app:expandedHintEnabled="false">
 
@@ -112,7 +112,24 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/CustomTextInputLayoutOutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33"
+            android:hint="@string/language"
+            app:hintTextColor="@color/colorAccent"
+            app:expandedHintEnabled="false">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+
     <com.google.android.material.textfield.TextInputLayout
         style="@style/CustomTextInputLayoutOutlinedBox"
         android:layout_width="match_parent"
@@ -120,12 +137,12 @@
         android:layout_marginTop="@dimen/margin_medium_2"
         android:layout_marginStart="@dimen/margin_medium_2"
         android:layout_marginEnd="@dimen/margin_medium_2"
-        android:hint="@string/language"
+        android:hint="Description"
         app:hintTextColor="@color/colorAccent"
         app:expandedHintEnabled="false">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etLanguage"
+            android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
@@ -148,7 +165,7 @@
             android:layout_weight="0.5"
             app:backgroundTint="@color/secondaryTextColor"
             android:layout_marginEnd="@dimen/margin_medium_2"
-            app:cornerRadius="@dimen/margin_medium_3"
+            app:cornerRadius="@dimen/medium_24dp"
             android:text="Cancel"/>
 
         <com.google.android.material.button.MaterialButton
@@ -157,7 +174,7 @@
             android:layout_height="60dp"
             android:layout_weight="0.5"
             app:backgroundTint="@color/colorSecondary"
-            app:cornerRadius="@dimen/margin_medium_3"
+            app:cornerRadius="@dimen/medium_24dp"
             android:text="Save"/>
 
     </LinearLayout>

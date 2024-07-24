@@ -51,6 +51,7 @@ interface CloudFireStoreApi {
         uploadUser : String,
         uploadTime : String,
         userId : String,
+        description : String,
         onSuccess: (String) -> Unit,
         onFailure: (String) -> Unit
     )
