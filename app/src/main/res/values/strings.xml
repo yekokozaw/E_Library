@@ -37,4 +37,6 @@
     <string name="filter_books_by_year">filter books by year</string>
     <string name="lbl_yes">YES</string>
     <string name="lbl_search_books">Search books</string>
+    <string name="lbl_save">Save</string>
+    <string name="lbl_cancel">Cancel</string>
 </resources>

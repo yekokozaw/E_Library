@@ -3,7 +3,6 @@ package com.ktu.elibrary.network.storage
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.ParcelFileDescriptor
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -11,7 +10,6 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.ktu.elibrary.data.vo.PdfVo
 import com.ktu.elibrary.data.vo.UserVo
-import com.ktu.elibrary.network.auth.FirebaseAuthManager
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.UUID
@@ -254,19 +252,19 @@ object CloudFireStoreApiImpl : CloudFireStoreApi {
                     for (document in documentList){
                         val data = document.data
                         val id = data?.get("id") as String
-                        val title = data["title"] as String
+                        val bookTitle = data["title"] as String
                         val pages = data["pages"] as String
                         val grade = data["grade"] as Long
-                        val fileSize = data["file_size"] as String
-                        val language = data["language"] as String
+                        val fileSize = data["file_size"] as? String ?: ""
+                        val language = data["language"] as? String ?: ""
                         val posterImage = data["poster_image"] as String
                         val fileUrl = data["file_url"] as String
-                        val uploadUser = data["upload_user"] as String
-                        val uploadTime = data["upload_time"] as String
+                        val uploadUser = data["upload_user"] as? String ?: "user name is null"
+                        val uploadTime = data["upload_time"] as? String ?: "null"
 
                         val pdf = PdfVo(
                             id,
-                            title,
+                            bookTitle,
                             grade = grade.toInt(),
                             pages = pages,
                             fileSize = fileSize,
