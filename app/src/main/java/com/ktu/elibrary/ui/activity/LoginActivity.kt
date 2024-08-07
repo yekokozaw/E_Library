@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityLoginBinding
     private val pdfModel : PdfModel = PdfModelImpl
     private val mAuthModel : AuthModel = AuthModelImpl
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityLoginBinding.inflate(layoutInflater)

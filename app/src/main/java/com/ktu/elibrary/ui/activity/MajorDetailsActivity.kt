@@ -7,9 +7,11 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.firestore.memoryLruGcSettings
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.model.PdfModel
 import com.ktu.elibrary.data.model.PdfModelImpl
@@ -135,6 +137,12 @@ class MajorDetailsActivity : AppCompatActivity() ,pdfViewHolderDelegate{
     }
 
     private fun bindYearSpinner() {
+        if (major == 9){
+            val yearsArray = resources.getStringArray(R.array.year_list_biotech)
+            val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, yearsArray)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            mBinding.spinnerYear.adapter = adapter
+        }
         mBinding.spinnerYear.setSelection(0)
         mBinding.spinnerYear.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
