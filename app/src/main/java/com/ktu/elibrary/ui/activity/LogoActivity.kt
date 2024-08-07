@@ -30,7 +30,6 @@ class LogoActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         sharedPreferencesHelper = SharedPreferencesHelper(this)
         val currentUser = auth.currentUser
-        startLoadingAnimation()
         Handler(Looper.getMainLooper()).postDelayed({
             if (currentUser != null){
                 pdfModel.getSpecificUser(
@@ -49,28 +48,13 @@ class LogoActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        },2000)
-
+        },2500)
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        mBinding.lvAnimation.pauseAnimation()
         handler.removeCallbacksAndMessages(null)
     }
 
-    private fun startLoadingAnimation() {
-        handler.postDelayed(object : Runnable {
-            override fun run() {
-                val dots = when (loadingDots) {
-                    0 -> ""
-                    1 -> "."
-                    2 -> ".."
-                    else -> "..."
-                }
-                mBinding.tvWelcome.text = "Loading$dots"
-                loadingDots = (loadingDots + 1) % 4
-                handler.postDelayed(this, 500)
-            }
-        }, 500)
-    }
 }

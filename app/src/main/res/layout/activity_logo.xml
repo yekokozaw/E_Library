@@ -7,25 +7,37 @@
     android:background="@drawable/background_logo_gradient"
     tools:context=".ui.activity.LogoActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivLogoSplash"
-        android:layout_width="160dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="240dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@mipmap/kyauksetu_logoonly" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:id="@+id/ivLogoSplash"-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="240dp"-->
+<!--        android:scaleType="centerCrop"-->
+<!--        app:srcCompat="@mipmap/logo" />-->
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ivLogoSplash"
-        android:layout_marginTop="@dimen/margin_xlarge"
+<!--    <androidx.appcompat.widget.AppCompatTextView-->
+<!--        android:id="@+id/tvWelcome"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/lvAnimation"-->
+<!--        android:text="Loading..."-->
+<!--        android:fontFamily="@font/ubuntu_light"-->
+<!--        android:layout_marginTop="@dimen/margin_xlarge"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="@dimen/margin_5dp"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="@dimen/text_regular" />-->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lvAnimation"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:lottie_fileName="animation_book.json"
+        app:lottie_autoPlay="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/margin_5dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_regular" />
+        android:layout_centerInParent="true"
+        app:lottie_loop="true"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"

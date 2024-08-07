@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ListenerRegistration
 import com.ktu.elibrary.R
 import com.ktu.elibrary.databinding.ActivityMainBinding
 import com.ktu.elibrary.extensions.SharedPreferencesHelper
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
+
         sharedPreferencesHelper = SharedPreferencesHelper(this)
         setUpToolbar()
         setUpListeners()

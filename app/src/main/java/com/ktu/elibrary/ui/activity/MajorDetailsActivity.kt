@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.memoryLruGcSettings
 import com.ktu.elibrary.R
 import com.ktu.elibrary.data.model.PdfModel
@@ -115,15 +116,15 @@ class MajorDetailsActivity : AppCompatActivity() ,pdfViewHolderDelegate{
     }
 
     private fun setUpNetworkCall(){
-        mPdfModel.getPdfList(
-            major,
-            onSuccess = {
-                mPdfAdapter.setNewData(it)
-            },
-            onFailure = {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
-        )
+            mPdfModel.getPdfList(
+                major,
+                onSuccess = {
+                    mPdfAdapter.setNewData(it)
+                },
+                onFailure = {
+                    Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+                }
+            )
     }
 
     private fun setUpRecyclerView(){
